@@ -1,0 +1,39 @@
+{
+  "name": "nice-nodechat",
+  "version": "0.0.0",
+  "description": "Simple chat compliant for efficient coworking and powered by nodejs",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "~1.9.0",
+    "express": "~3.4.8",
+    "socket.io": "~0.9.16"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/J3z/nice-nodechat.git"
+  },
+  "keywords": [
+    "nice",
+    "chat",
+    "coworking",
+    "efficient",
+    "nodejs",
+    "share"
+  ],
+  "author": "Jérémie Gaven",
+  "license": "CC BY-SA 4.0",
+  "bugs": {
+    "url": "https://github.com/J3z/nice-nodechat/issues"
+  },
+  "homepage": "https://github.com/J3z/nice-nodechat"
+}
