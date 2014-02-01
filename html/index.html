@@ -1,63 +1,46 @@
-<script src="/socket.io/socket.io.js"></script>
-<script src="/jquery.js"></script>
-<script>
-socket = io.connect('http://179.114.200.25:4244');
-
-	// on connection to server, ask for user's name with an anonymous callback
-	socket.on('connect', function(){
-		// call the server-side function 'adduser' and send one parameter (value of prompt)
-		socket.emit('adduser', prompt("What's your name?"));
-	});
-
-	// listener, whenever the server emits 'updatechat', this updates the chat body
-	socket.on('updatechat', function (username, data) {
-		$('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
-	});
-
-	// listener, whenever the server emits 'updaterooms', this updates the room the client is in
-	socket.on('updaterooms', function(rooms, current_room) {
-		$('#rooms').empty();
-		$.each(rooms, function(key, value) {
-			if(value == current_room){
-				$('#rooms').append('<div>' + value + '</div>');
-			}
-			else {
-				$('#rooms').append('<div><a href="#" onclick="switchRoom(\''+value+'\')">' + value + '</a></div>');
-			}
-		});
-	});
-
-	function switchRoom(room){
-		socket.emit('switchRoom', room);
-	}
-
-	// on load of page
-	$(function(){
-		// when the client clicks SEND
-		$('#datasend').click( function() {
-			var message = $('#data').val();
-			$('#data').val('');
-			// tell server to execute 'sendchat' and send along one parameter
-			socket.emit('sendchat', message);
-		});
-
-		// when the client hits ENTER on their keyboard
-		$('#data').keypress(function(e) {
-			if(e.which == 13) {
-				$(this).blur();
-				$('#datasend').focus().click();
-			}
-		});
-	});
-
-</script>
-
-<div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
-	<b>ROOMS</b>
-	<div id="rooms"></div>
-</div>
-<div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
-	<div id="conversation"></div>
-	<input id="data" style="width:200px;" />
-	<input type="button" id="datasend" value="send" />
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Nice node-chat wooHoo !</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<div class="row container-wrapp">
+			<div class="side-1 col-md-1">
+				<div class="row">
+					<h4>ROOMS</h4>
+					<div id="rooms"></div>
+				</div>
+				<div class="row">
+					<h4>USERS</h4>
+					<div id="users"></div>
+				</div>
+			</div>
+			<div class="side-2 col-md-11">
+				<div id="text-zone" class="row">
+					<div id="conversation" class="col-md-12" ></div>
+				</div>
+				<div id="send-zone" class="row">
+					<input id="data" style="width:200px;" />
+					<input type="button" id="datasend" value="send" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/jquery.js"></script>
+	<script src="/socket.js"></script>
+	<script src="/scripts.js"></script>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    	<!--[if lt IE 9]>
+      	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      	<![endif]-->
+</body>
+</html>

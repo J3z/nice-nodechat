@@ -12,21 +12,38 @@ var rooms		= ['home', 'playground'];
 server.listen(4224);
 
 app.get('/', function(req, res){
-	res.sendfile(__dirname + '/index.html');
+	res.sendfile(__dirname + '/html/index.html');
 });
 
 app.get('/jquery.js', function(req, res){
-	res.sendfile(__dirname + '/jquery.js');
+	res.sendfile(__dirname + '/lib/jquery.js');
+});
+
+app.get('/socket.js', function(req, res){
+	res.sendfile(__dirname + '/custom/client/socket.js');
+});
+
+app.get('/scripts.js', function(req, res){
+	res.sendfile(__dirname + '/custom/client/main.js');
+});
+
+app.get('/css/bootstrap.min.css', function(req, res){
+	res.sendfile(__dirname + '/lib/bootstrap/css/bootstrap.min.css');
+});
+
+app.get('/css/styles.css', function(req, res){
+	res.sendfile(__dirname + '/css/styles.css');
 });
 
 io.sockets.on('connection', function(socket){
-	socket.io('adduser'. function(username){
+	
+	socket.on('adduser', function(username){
 
 		socket.username = username;
 
 		socket.room = 'home';
 
-		usernames[username] - username;
+		usernames[username] = username;
 
 		socket.join('home');
 
@@ -35,6 +52,8 @@ io.sockets.on('connection', function(socket){
 		socket.broadcast.to('home').emit('updatechat', 'SERVER', username + ' vient tout juste de se connecter. Dites lui bonjour !');
 
 		socket.emit('updaterooms', rooms, 'home');
+		socket.emit('updateusers', usernames);
+		socket.broadcast.emit('updateusers', usernames);
 	});
 
 	socket.on('sendchat', function(data){
