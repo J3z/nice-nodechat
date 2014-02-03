@@ -1,4 +1,6 @@
-socket = io.connect('127.0.0.1:4224');
+var url = window.location;
+
+socket = io.connect(url);
 
 	// on connection to server, ask for user's name with an anonymous callback
 	socket.on('connect', function(){
