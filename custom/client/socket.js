@@ -11,7 +11,7 @@ socket.on('connect', function(){
 // listener, whenever the server emits 'updatechat', this updates the chat body
 socket.on('updatechat', function (username, data) {
 	$('#conversation').append('<div class"chat-line row"><div class="col-md-1">'+ username + ':</div><div class"col-md-11"> ' + data + '</div></div>');
-	
+	$('#conversation').scrollBottom = $('#conversation').scrollHeight;
 
 	$('#conversation').animate({
 			scrollBottom: $('#conversation').prop('scrollHeight')

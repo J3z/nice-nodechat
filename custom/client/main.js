@@ -8,6 +8,7 @@ $(function(){
 	buttonSend.click( function() {
 		var message = fieldSend.val();
 		fieldSend.val('');
+		
 		// tell server to execute 'sendchat' and send along one parameter
 		socket.emit('sendchat', message);
 	});
