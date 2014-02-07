@@ -1,37 +1,31 @@
 body, html, .container, .container-wrapp, .side-2, .side-1 {
-  height: 100%;
-  position: relative;
+  	height: 100%;
+  	position: relative;
+	margin-bottom: 50px;
 }
 
 #text-zone{
 	width: 100%;
 	height: 100%;
 	overflow: auto;
-	position: absolute;
-	margin-bottom: 50px;
 	float: left;
-	border: solid 1px black;
-	white-space: nowrap;
-}
-
-#space{
-
-	width: 100%;
-	height: 50px;
-	position: relative;
-	float: left;
-
-	border: solid 1px red;
 }
 
 #conversation{
 	width: 100%;
-	padding-bottom: 50px;
 }
 
 #send-zone{
-	width: 100%;
-    height: 50px;
-    bottom: 0;
-    position: fixed;
+    	height: 50px;
+	top: -40px;
+}
+
+#data{
+	position: relative;
+	float: left;
+}
+
+#datasend{
+	position: relative;
+	float: left;
 }
