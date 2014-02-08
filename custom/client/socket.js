@@ -1,8 +1,11 @@
 var url 		= window.location;
 
+var browser		= $(window);
+var chatSpaceWr	= $('#text-zone');
 var chatSpace	= $('#conversation');
 var roomSpace	= $('#rooms');
 var usersSpace	= $('#users');
+var heightbr 	= browser.height();
 
 socket = io.connect(url);
 
@@ -14,12 +17,14 @@ socket.on('connect', function(){
 
 // listener, whenever the server emits 'updatechat', this updates the chat body
 socket.on('updatechat', function (username, data) {
-	chatSpace.append('<div class"chat-line row"><div class="col-md-1">'+ username + ':</div><div class"col-md-11"> ' + data + '</div></div>');
-	chatSpace.scrollBottom = chatSpace.scrollHeight;
-
-	chatSpace.animate({
-			scrollBottom: chatSpace.prop('scrollHeight')
-		});
+	chatSpace.append('<div class"chat-line row"><span class="username">'+ username + ':</span><span class"message"> ' + data + '</span></span>');
+	
+	$(".chat-line").animate({
+			opacity: 0.1
+		}, 3000);
+	chatSpaceWr.animate({
+			scrollTop: chatSpace.height()
+		}, 3);
 
 });
 

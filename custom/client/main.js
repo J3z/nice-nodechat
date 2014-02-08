@@ -1,27 +1,51 @@
 // on load of page
 $(function(){
 	
+	var browser = $(window);
+	var html	= $(document);
+
+	// Input initialisation
 	var buttonSend 	= $('#datasend');
 	var fieldSend	= $('#data');
 
-	// when the client clicks SEND
-	buttonSend.click( function() {
-		var message = fieldSend.val();
-		fieldSend.val('');
+	// Chat space initialisation
+	var chatSpace	= $('#text-zone');
+	var sendZone	= $('#send-zone');
 
-		// tell server to execute 'sendchat' and send along one parameter
-		socket.emit('sendchat', message);
+	var updateChatSpaceHeight = function(){
+			chatSpace.height(chatSpace.height() - sendZone.height() - 10);
+		};
+	
+	updateChatSpaceHeight();
+
+	// Force chat space resize height
+	browser.resize(function(){
+		updateChatSpaceHeight();
 	});
-	// when the client hits ENTER on their keyboard
-	$(window).keypress(function(e) {
+	
+	// Send texte when click on send
+	buttonSend.click( function() {
+		// tell server to execute 'sendchat' and send along one parameter
+		socket.emit('sendchat', fieldSend.val());
+		// Emptying input
+		fieldSend.val('');
+	});
+	
+	// Focus and click event when we push enter
+	browser.keypress(function(e) {
+		// Keypress 13 (enter) and input focused
 		if(e.which == 13 && fieldSend.is(":focus")) {
 			fieldSend.blur();
+			// If field not empty
 			if (fieldSend.val() != ""){
+				// Simulate click
 				buttonSend.click();
 			}
 			return;
 		}
+		// Toggle focus
 		fieldSend.focus();
 	});
+
+
 });
- 
