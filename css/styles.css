@@ -1,9 +1,10 @@
-body, html, .container, .container-wrapp, .side-2, .side-1 {
+body, html  {
   	height: 100%;
-  	position: relative;
-	margin-bottom: 50px;
 }
-
+.container, .container-wrapp, .side-2, .side-1{
+	height: 100%;
+	position: relative;
+}
 #text-zone{
 	width: 100%;
 	height: 100%;
@@ -16,8 +17,11 @@ body, html, .container, .container-wrapp, .side-2, .side-1 {
 }
 
 #send-zone{
-    	height: 50px;
-	top: -40px;
+	width: 80%;
+    height: 50px;
+	position: fixed;
+	bottom: 0;
+	border: 0;
 }
 
 #data{
