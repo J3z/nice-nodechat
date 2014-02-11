@@ -6,20 +6,26 @@ var chatSpace	= $('#conversation');
 var roomSpace	= $('#rooms');
 var usersSpace	= $('#users');
 var heightbr 	= browser.height();
-
+var nickname	= 'Anon';
 socket = io.connect(url);
 
 // on connection to server, ask for user's name with an anonymous callback
 socket.on('connect', function(){
+	nickname = prompt("Entrez votre pseudo");
 	// call the server-side function 'adduser' and send one parameter (value of prompt)
-	socket.emit('adduser', prompt("Entrez votre nom"));
+	socket.emit('adduser', nickname);
 });
 
 // listener, whenever the server emits 'updatechat', this updates the chat body
 socket.on('updatechat', function (username, data) {
-	chatSpace.append('<div class"chat-line row"><span class="username">'+ username + ':</span><span class"message"> ' + data + '</span></span>');
+
+	if (nickname != username){
+		chatSpace.append('<div class"row conversation-line "><span class="username nick-' + username + '">&lt;'+ username + '&gt;</span> <span class"message"> ' + data + '</span></div>');
+	} else {
+		chatSpace.append('<div class"row conversation-line "><span class="username nick-current">&lt;'+ username + '&gt;</span> <span class"message"> ' + data + '</span></div>');
+	}
 	
-	$(".chat-line").animate({
+	$(".conversation-line").animate({
 			opacity: 0.1
 		}, 3000);
 	chatSpaceWr.animate({

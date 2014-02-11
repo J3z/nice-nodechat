@@ -16,9 +16,20 @@ body, html  {
 	width: 100%;
 }
 
-.chat-line{
-	opacity: 0;
+.conversation-line{
 	background-color: green;
+}
+
+.username{
+	color: #3c3c3c;
+}
+
+.nick-SERVER{
+	color: #b00;
+}
+
+.nick-current{
+	color: #004c00;
 }
 
 #send-zone{

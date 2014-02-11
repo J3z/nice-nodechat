@@ -1,9 +1,8 @@
 // on load of page
 $(function(){
 	
-	var browser = $(window);
+	var browser 	= $(window);
 	var html	= $(document);
-
 	// Input initialisation
 	var buttonSend 	= $('#datasend');
 	var fieldSend	= $('#data');
@@ -13,8 +12,8 @@ $(function(){
 	var sendZone	= $('#send-zone');
 
 	var updateChatSpaceHeight = function(){
-			chatSpace.height(chatSpace.height() - sendZone.height() - 10);
-		};
+		chatSpace.height(chatSpace.height() - sendZone.height() - 10);
+	};
 	
 	updateChatSpaceHeight();
 
