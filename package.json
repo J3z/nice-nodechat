@@ -1,6 +1,6 @@
 {
   "name": "nice-nodechat",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple chat compliant for efficient coworking and powered by nodejs",
   "main": "index.js",
   "directories": {
