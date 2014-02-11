@@ -18,19 +18,21 @@ socket.on('connect', function(){
 
 // listener, whenever the server emits 'updatechat', this updates the chat body
 socket.on('updatechat', function (username, data) {
-
 	if (nickname != username){
-		chatSpace.append('<div class"row conversation-line "><span class="username nick-' + username + '">&lt;'+ username + '&gt;</span> <span class"message"> ' + data + '</span></div>');
+		chatSpace.append('<div id="line-1" class="row line-handle"><span class="username nick-' + username + '">&lt;'+ username + '&gt;</span> <span class"message"> ' + data + '</span></div>').addClass("line-handle");
 	} else {
-		chatSpace.append('<div class"row conversation-line "><span class="username nick-current">&lt;'+ username + '&gt;</span> <span class"message"> ' + data + '</span></div>');
+		chatSpace.append('<div class="row line-handle"><span class="username nick-current">&lt;'+ username + '&gt;</span> <span class"message"> ' + data + '</span></div>');
 	}
 	
-	$(".conversation-line").animate({
-			opacity: 0.1
-		}, 3000);
+	var lineHandle	= $('.line-handle');
+	
+	lineHandle.animate({
+			opacity: 1
+		}, 250);
+	
 	chatSpaceWr.animate({
 			scrollTop: chatSpace.height()
-		}, 3);
+		}, 400);
 
 });
 

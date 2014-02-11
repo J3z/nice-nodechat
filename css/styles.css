@@ -16,11 +16,14 @@ body, html  {
 	width: 100%;
 }
 
-.conversation-line{
-	background-color: green;
+.line-handle{
+	opacity: 0;
 }
 
 .username{
+	font: arial;
+	font-weight: bold;
+	font-size: 13px;
 	color: #3c3c3c;
 }
 
