@@ -27,6 +27,10 @@ app.get('/scripts.js', function(req, res){
 	res.sendfile(__dirname + '/custom/client/main.js');
 });
 
+app.get('/img/n.gif', function(req, res){
+	res.sendfile(__dirname + '/custom/client/img/n.gif');
+});
+
 app.get('/css/bootstrap.min.css', function(req, res){
 	res.sendfile(__dirname + '/lib/bootstrap/css/bootstrap.min.css');
 });
