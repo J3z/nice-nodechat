@@ -46,5 +46,7 @@ $(function(){
 		fieldSend.focus();
 	});
 
-
+	browser.on("focus",function(){
+		document.title = "Nice node chat wohhhoooo";
+	});
 });

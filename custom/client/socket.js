@@ -19,6 +19,7 @@ socket.on('connect', function(){
 // listener, whenever the server emits 'updatechat', this updates the chat body
 socket.on('updatechat', function (username, data) {
 	if (nickname != username){
+		document.title= "New message woho";
 		chatSpace.append('<div id="line-1" class="row line-handle"><span class="username nick-' + username + '">&lt;'+ username + '&gt;</span> <span class"message"> ' + data + '</span></div>').addClass("line-handle");
 	} else {
 		chatSpace.append('<div class="row line-handle"><span class="username nick-current">&lt;'+ username + '&gt;</span> <span class"message"> ' + data + '</span></div>');
