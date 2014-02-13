@@ -11,8 +11,10 @@ $(function(){
 	var chatSpace	= $('#text-zone');
 	var sendZone	= $('#send-zone');
 
+	// Update height of conversation field
 	var updateChatSpaceHeight = function(){
-		chatSpace.height(chatSpace.height() - sendZone.height() - 10);
+		var newHeight = browser.height() - sendZone.height() - 10;
+		chatSpace.height(newHeight);
 	};
 	
 	updateChatSpaceHeight();
